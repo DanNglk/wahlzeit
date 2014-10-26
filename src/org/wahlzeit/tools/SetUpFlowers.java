@@ -58,5 +58,4 @@ public class SetUpFlowers extends ScriptMain {
 		String photoDir = SysConfig.getRootDirAsString() + File.separator + "config" + File.separator + "flowers";
 		createUser("testuser", "testuser", "info@wahlzeit.org", photoDir);
 	}
-
 }
