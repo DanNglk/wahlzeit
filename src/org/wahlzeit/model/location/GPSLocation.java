@@ -42,7 +42,7 @@ public class GPSLocation extends AbstractLocation {
 
     @Override
     protected String doGetMapcode() {
-        return MapcodeCodec.encodeToInternational(getLatitude(), getLongitude()).toString();
+        return MapcodeCodec.encodeToShortest(getLatitude(), getLongitude()).toString();
     }
 
     @Override

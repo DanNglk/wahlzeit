@@ -46,26 +46,34 @@ public class MapcodeLocation extends AbstractLocation {
 
     @Override
     protected void doSetLatitude(double latitude) {
-        try {
-            Point gpsCoordinates = MapcodeCodec.decode(mapcode);
-            double newLatitude = latitude;
-            double oldLongitude = gpsCoordinates.getLonDeg();
-            setMapcode(MapcodeCodec.encodeToInternational(newLatitude, oldLongitude).toString());
-        } catch (UnknownMapcodeException e) {
-            throw new RuntimeException("Decoding error, could not decode mapcode");
+        if (mapcode != null) {
+            try {
+                Point gpsCoordinates = MapcodeCodec.decode(mapcode);
+                double newLatitude = latitude;
+                double oldLongitude = gpsCoordinates.getLonDeg();
+                setMapcode(MapcodeCodec.encodeToShortest(newLatitude, oldLongitude).toString());
+            } catch (UnknownMapcodeException e) {
+                throw new RuntimeException("Decoding error, could not decode mapcode");
+            }
         }
+        else
+            setMapcode(MapcodeCodec.encodeToInternational(latitude, 0.0).toString());
     }
 
     @Override
     protected void doSetLongitude(double longitude) {
-        try {
-            Point gpsCoordinates = MapcodeCodec.decode(mapcode);
-            double oldLatitude = gpsCoordinates.getLatDeg();
-            double newLongitude = longitude;
-            setMapcode(MapcodeCodec.encodeToInternational(oldLatitude, newLongitude).toString());
-        } catch (UnknownMapcodeException e) {
-            throw new RuntimeException("Decoding error, could not decode mapcode");
+        if (mapcode != null) {
+            try {
+                Point gpsCoordinates = MapcodeCodec.decode(mapcode);
+                double oldLatitude = gpsCoordinates.getLatDeg();
+                double newLongitude = longitude;
+                setMapcode(MapcodeCodec.encodeToShortest(oldLatitude, newLongitude).toString());
+            } catch (UnknownMapcodeException e) {
+                throw new RuntimeException("Decoding error, could not decode mapcode");
+            }
         }
+        else
+            setMapcode(MapcodeCodec.encodeToInternational(0.0, longitude).toString());
     }
 
     @Override
