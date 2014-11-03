@@ -1,3 +1,8 @@
+.settings/
+.classpath
+.metadata
+.project
 /build
 /web/data/photos
 /web/WEB-INF/classes
+/target/
