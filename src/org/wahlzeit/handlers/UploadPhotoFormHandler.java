@@ -24,6 +24,9 @@ import java.util.*;
 import java.io.*;
 
 import org.wahlzeit.model.*;
+import org.wahlzeit.model.location.GPSLocation;
+import org.wahlzeit.model.location.Location;
+import org.wahlzeit.model.location.MapcodeLocation;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
@@ -57,11 +60,24 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	 */
 	protected String doHandlePost(UserSession us, Map args) {
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
+        String mapcode = us.getAndSaveAsString(args, Photo.MAPCODE);
+        String latitude = us.getAndSaveAsString(args, Photo.LATITUDE);
+        String longitude =us.getAndSaveAsString(args, Photo.LONGITUDE);
 
 		if (!StringUtil.isLegalTagsString(tags)) {
 			us.setMessage(us.cfg().getInputIsInvalid());
 			return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
 		}
+
+        if (!LocationUtil.isLegalMapcode(mapcode)) {
+            us.setMessage(us.cfg().getInputIsInvalid());
+            return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
+        }
+
+        if (!LocationUtil.isLegalGPSCoordinate(latitude) && !LocationUtil.isLegalGPSCoordinate(longitude)) {
+            us.setMessage(us.cfg().getInputIsInvalid());
+            return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
+        }
 
 		try {
 			PhotoManager pm = PhotoManager.getInstance();
@@ -76,6 +92,10 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			user.addPhoto(photo); 
 			
 			photo.setTags(new Tags(tags));
+            if (!mapcode.isEmpty())
+                photo.setLocation(new MapcodeLocation(mapcode));
+            else if (!latitude.isEmpty() && !longitude.isEmpty())
+                photo.setLocation(new GPSLocation(Double.parseDouble(latitude), Double.parseDouble(longitude)));
 
 			pm.savePhoto(photo);
 

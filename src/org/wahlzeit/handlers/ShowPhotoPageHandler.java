@@ -162,7 +162,8 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 		// String photoId = photo.getId().asString();
 			
 		WebPart caption = createWebPart(us, PartUtil.CAPTION_INFO_FILE);
-		caption.addString(Photo.CAPTION, getPhotoCaption(us, photo));
+        caption.addString(Photo.LOCATION_CAPTION, photo.getLocation().asString());
+        caption.addString(Photo.CAPTION, getPhotoCaption(us, photo));
 		page.addWritable(Photo.CAPTION, caption);
 	}
 

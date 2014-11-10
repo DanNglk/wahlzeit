@@ -23,6 +23,8 @@ package org.wahlzeit.model;
 import java.sql.*;
 import java.net.*;
 
+import org.wahlzeit.model.location.GPSLocation;
+import org.wahlzeit.model.location.Location;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 
@@ -45,8 +47,12 @@ public class Photo extends DataObject {
 	public static final String CAPTION = "caption";
 	public static final String DESCRIPTION = "description";
 	public static final String KEYWORDS = "keywords";
+    public static final String LOCATION_CAPTION = "location";
 
 	public static final String TAGS = "tags";
+    public static final String LATITUDE = "latitude";
+    public static final String LONGITUDE = "longitude";
+    public static final String MAPCODE = "mapcode";
 
 	public static final String STATUS = "status";
 	public static final String IS_INVISIBLE = "isInvisible";
@@ -106,6 +112,11 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	protected long creationTime = System.currentTimeMillis();
+
+    /**
+     *
+     */
+    protected Location location = new GPSLocation(0.0, 0.0);
 	
 	/**
 	 * 
@@ -167,6 +178,9 @@ public class Photo extends DataObject {
 		creationTime = rset.getLong("creation_time");
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
+
+        location.setLatitude(rset.getDouble("latitude"));
+        location.setLongitude(rset.getDouble("longitude"));
 	}
 	
 	/**
@@ -186,7 +200,9 @@ public class Photo extends DataObject {
 		rset.updateInt("status", status.asInt());
 		rset.updateInt("praise_sum", praiseSum);
 		rset.updateInt("no_votes", noVotes);
-		rset.updateLong("creation_time", creationTime);		
+		rset.updateLong("creation_time", creationTime);
+        rset.updateDouble("latitude", location.getLatitude());
+        rset.updateDouble("longitude", location.getLongitude());
 	}
 
 	/**
@@ -480,5 +496,14 @@ public class Photo extends DataObject {
 	public long getCreationTime() {
 		return creationTime;
 	}
-	
+
+
+    public Location getLocation() {
+        return location;
+    }
+
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }

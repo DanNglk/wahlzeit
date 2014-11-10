@@ -11,6 +11,10 @@ public class MapcodeLocation extends AbstractLocation {
 
     private String mapcode;
 
+    public MapcodeLocation(String mapcode) {
+        this.mapcode = mapcode;
+    }
+
     @Override
     public String getMapcode() {
         return mapcode;
