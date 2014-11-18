@@ -1,6 +1,6 @@
 <form action="uploadPhotoForm.form" method="post" enctype="multipart/form-data" name="uploadPhotoForm">
 
-	<h2>Upload a photo!</h2>
+	<h2>Upload a guitar-photo!</h2>
 	<p><b>{$message}</b></p>
 
 	<table class="border"><tr><td class="spacer"><table class="form">
@@ -13,22 +13,65 @@
 			<td class="twoCol2"><input type="text" name="tags" value="{$tags}" size="48" /></td>
 		</tr>
         <tr>
-            <td class="twoCol1">Coordinates:&nbsp;</td>
-            <td class="twoCol2"><input type="text" name="latitude" value="{$latitude}" size="48" /></td>
-            <td class="twoCol2"><input type="text" name="longitude" value="{$longitude}" size="48" /></td>
+            <td class="twoCol1">Lat/Long:&nbsp;</td>
+            <td class="twoCol2">
+                <input type="text" name="latitude" value="{$latitude}" size="48" />
+                <input type="text" name="longitude" value="{$longitude}" size="48" />
+            </td>
         </tr>
         <tr>
             <td class="twoCol1">Mapcode:&nbsp;</td>
             <td class="twoCol2"><input type="text" name="mapcode" value="{$mapcode}" size="48" /></td>
         </tr>
-		<tr>
-			<td class="twoCol1">&nbsp;</td>
-			<td class="twoCol2"><input type="submit" name="upload" value="Upload!" /></td>
-		</tr>
-	</table></td></tr></table>
-	
+        <tr>
+            <td class="twoCol1">Type:&nbsp;</td>
+            <td class="twoCol2">
+                <select value="{$type}">
+                    <option>Acoustic</option>
+                    <option>Electric</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Shape:&nbsp;</td>
+            <td class="twoCol2">
+                <select value="{$shape}">
+                    <option>Western</option>
+                    <option>Concert</option>
+                    <option>ST</option>
+                    <option>T</option>
+                </select>
+             </td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Strings:&nbsp;</td>
+            <td class="twoCol2">
+                <select value="{$strings}">
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+                <select value="{$material}">
+                    <option>Steel</option>
+                    <option>Nylon</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Frets:&nbsp;</td>
+            <td class="twoCol2"><input type="text" name="frets" value="{$frets}" size="48" /></td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Features:&nbsp;</td>
+            <td class="twoCol2"><input type="text" name="features" value="{$features}" size="48" /></td>
+        </tr>
+        <tr>
+            <td class="twoCol1">&nbsp;</td>
+            <td class="twoCol2"><input type="submit" name="upload" value="Upload!" /></td>
+        </tr>
+	</table>
+
 	<p>
-		If you need to upload many photos at once, 
+		If you need to upload many photos at once,
 		please <a href="contact.html">contact us</a>!
 	</p>
 

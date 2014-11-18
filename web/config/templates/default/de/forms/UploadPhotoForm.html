@@ -13,19 +13,62 @@
 			<td class="twoCol2"><input type="text" name="tags" value="{$tags}" size="48" /></td>
 		</tr>
         <tr>
-            <td class="twoCol1">GPS-Koordinaten:&nbsp;</td>
-            <td class="twoCol2"><input type="text" name="latitude" value="{$latitude}" size="48" /></td>
-            <td class="twoCol2"><input type="text" name="longitude" value="{$longitude}" size="48" /></td>
+            <td class="twoCol1">Lat/Long:&nbsp;</td>
+            <td class="twoCol2">
+                <input type="text" name="latitude" value="{$latitude}" size="48" />
+                <input type="text" name="longitude" value="{$longitude}" size="48" />
+            </td>
         </tr>
         <tr>
             <td class="twoCol1">Mapcode:&nbsp;</td>
             <td class="twoCol2"><input type="text" name="mapcode" value="{$mapcode}" size="48" /></td>
         </tr>
+        <tr>
+            <td class="twoCol1">Typ:&nbsp;</td>
+            <td class="twoCol2">
+                <select value="{$type}">
+                    <option>Acoustic</option>
+                    <option>Electric</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Form:&nbsp;</td>
+            <td class="twoCol2">
+                <select value="{$shape}">
+                    <option>Western</option>
+                    <option>Concert</option>
+                    <option>ST</option>
+                    <option>T</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Saiten:&nbsp;</td>
+            <td class="twoCol2">
+                <select value="{$strings}">
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+                <select value="{$material}">
+                    <option>Steel</option>
+                    <option>Nylon</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Bünde:&nbsp;</td>
+            <td class="twoCol2"><input type="text" name="frets" value="{$frets}" size="48" /></td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Features:&nbsp;</td>
+            <td class="twoCol2"><input type="text" name="features" value="{$features}" size="48" /></td>
+        </tr>
 		<tr>
 			<td class="twoCol1">&nbsp;</td>
 			<td class="twoCol2"><input type="submit" name="upload" value="Upload!" /></td>
 		</tr>
-	</table></td></tr></table>
+	</table>
 	
 	<p>
 		If you need to upload many photos at once, 

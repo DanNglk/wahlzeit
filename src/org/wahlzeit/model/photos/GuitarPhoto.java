@@ -9,12 +9,23 @@ import java.sql.SQLException;
 /**
  * Created by cdan on 18/11/14.
  */
-public class GuitarPhoto extends Photo {
+public abstract class GuitarPhoto extends Photo {
 
-    private GuitarStrings guitarStrings;
+    public static final String TYPE = "type";
+    public static final String SHAPE = "shape";
+    public static final String STRINGS = "strings";
+    public static final String MATERIAL = "material";
+    public static final String FRETS = "frets";
+    public static final String FEATURES = "features";
+    public static final String PICKUPS = "pickups";
+
+
+    private GuitarType guitarType;
     private GuitarShape guitarShape;
+    private GuitarStrings guitarStrings;
     private int frets;
     private String features;
+    private int pickups;
 
 
     /**
@@ -58,14 +69,24 @@ public class GuitarPhoto extends Photo {
 
 
     /**
-     * @pre guitarStrings != null
+     * @pre
+     * @post
+     * @methodtype get
+     */
+    public GuitarType getGuitarType() {
+        return guitarType;
+    }
+
+
+    /**
+     * @pre guitarType != null
      * @post correct value set
      * @methodtype set
      */
-    public void setGuitarStrings(GuitarStrings guitarStrings) {
-        assert guitarStrings != null;
-        this.guitarStrings = guitarStrings;
-        assert this.guitarStrings == guitarStrings;
+    public void setGuitarType(GuitarType guitarType) {
+        assert guitarType != null;
+        this.guitarType = guitarType;
+        assert this.guitarType == guitarType;
     }
 
 
@@ -88,6 +109,18 @@ public class GuitarPhoto extends Photo {
         assert guitarShape != null;
         this.guitarShape = guitarShape;
         assert this.guitarShape == guitarShape;
+    }
+
+
+    /**
+     * @pre guitarStrings != null
+     * @post correct value set
+     * @methodtype set
+     */
+    public void setGuitarStrings(GuitarStrings guitarStrings) {
+        assert guitarStrings != null;
+        this.guitarStrings = guitarStrings;
+        assert this.guitarStrings == guitarStrings;
     }
 
 
@@ -132,6 +165,28 @@ public class GuitarPhoto extends Photo {
         assert features != null;
         this.features = features;
         assert this.features == features;
+    }
+
+
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
+    public int getPickups() {
+        return pickups;
+    }
+
+
+    /**
+     * @pre pickups > 0
+     * @post correct value set
+     * @methodtype set
+     */
+    public void setPickups(int pickups) {
+        assert pickups > 0;
+        this.pickups = pickups;
+        assert this.pickups == pickups;
     }
 
 

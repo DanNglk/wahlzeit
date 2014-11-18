@@ -6,7 +6,7 @@ package org.wahlzeit.model.photos;
 public class GuitarStrings {
 
     private int strings;
-    private String material;
+    private GuitarStringMaterial material;
 
 
     /**
@@ -14,7 +14,7 @@ public class GuitarStrings {
      * @post
      * @methodtype constructor
      */
-    public GuitarStrings(int strings, String material) {
+    public GuitarStrings(int strings, GuitarStringMaterial material) {
         this.strings = strings;
         this.material = material;
     }
@@ -47,7 +47,7 @@ public class GuitarStrings {
      * @post
      * @methodtype get
      */
-    public String getMaterial() {
+    public GuitarStringMaterial getMaterial() {
         return material;
     }
 
@@ -57,7 +57,7 @@ public class GuitarStrings {
      * @post correct value set
      * @methodtype set
      */
-    public void setMaterial(String material) {
+    public void setMaterial(GuitarStringMaterial material) {
         assert material != null;
         this.material = material;
         assert this.material == material;
