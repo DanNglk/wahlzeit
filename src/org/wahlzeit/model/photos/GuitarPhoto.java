@@ -9,12 +9,21 @@ import java.sql.SQLException;
 /**
  * Created by cdan on 18/11/14.
  */
-public abstract class GuitarPhoto extends Photo {
+public class GuitarPhoto extends Photo {
+
+    public static final String TYPE_CAPTION = "type";
+    public static final String SHAPE_CAPTION = "shape";
+    public static final String STRINGS_CAPTION = "strings";
+    public static final String FRETS_CAPTION = "frets";
+    public static final String FEATURES_CAPTION = "features";
+    public static final String PICKUPS_CAPTION = "pickups";
+
 
     public static final String TYPE = "type";
     public static final String SHAPE = "shape";
     public static final String STRINGS = "strings";
-    public static final String MATERIAL = "material";
+    public static final String STRING_SIZE = "string_size";
+    public static final String STRING_MATERIAL = "string_material";
     public static final String FRETS = "frets";
     public static final String FEATURES = "features";
     public static final String PICKUPS = "pickups";
@@ -198,7 +207,14 @@ public abstract class GuitarPhoto extends Photo {
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
         super.readFrom(rset);
-        //todo: read new attributes
+
+        setGuitarType(GuitarType.valueOf(rset.getString("type")));
+        setGuitarShape(GuitarShape.valueOf(rset.getString("shape")));
+        setGuitarStrings(new GuitarStrings(rset.getInt("strings"), rset.getInt("string_size"),
+                GuitarStringMaterial.valueOf(rset.getString("string_material"))));
+        setFrets(rset.getInt("frets"));
+        setFeatures(rset.getString("features"));
+        setPickups(rset.getInt("pickups"));
     }
 
 
@@ -210,6 +226,14 @@ public abstract class GuitarPhoto extends Photo {
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
         super.writeOn(rset);
-        //todo: write new attributes
+
+        rset.updateString("type", getGuitarType().name());
+        rset.updateString("shape", getGuitarShape().name());
+        rset.updateInt("strings", getGuitarStrings().getStrings());
+        rset.updateInt("string_size", getGuitarStrings().getSize());
+        rset.updateString("string_material", getGuitarStrings().getMaterial().name());
+        rset.updateInt("frets", getFrets());
+        rset.updateString("features", getFeatures());
+        rset.updateInt("pickups", getPickups());
     }
 }

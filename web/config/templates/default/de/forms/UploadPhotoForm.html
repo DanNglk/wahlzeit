@@ -15,8 +15,8 @@
         <tr>
             <td class="twoCol1">Lat/Long:&nbsp;</td>
             <td class="twoCol2">
-                <input type="text" name="latitude" value="{$latitude}" size="48" />
-                <input type="text" name="longitude" value="{$longitude}" size="48" />
+                <input type="text" name="latitude" value="{$latitude}" size="24" />
+                <input type="text" name="longitude" value="{$longitude}" size="24" />
             </td>
         </tr>
         <tr>
@@ -26,43 +26,63 @@
         <tr>
             <td class="twoCol1">Typ:&nbsp;</td>
             <td class="twoCol2">
-                <select value="{$type}">
-                    <option>Acoustic</option>
-                    <option>Electric</option>
+                <select name="type">
+                    <option value="Acoustic">Acoustic</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Semiacoustic">Semi-acoustic</option>
+                    <option value="Custom">Custom</option>
                 </select>
             </td>
         </tr>
         <tr>
             <td class="twoCol1">Form:&nbsp;</td>
             <td class="twoCol2">
-                <select value="{$shape}">
-                    <option>Western</option>
-                    <option>Concert</option>
-                    <option>ST</option>
-                    <option>T</option>
+                <select name="shape">
+                    <option value="ST">ST</option>
+                    <option value="T">T</option>
+                    <option value="Single_cut">Single-cut</option>
+                    <option value="Double_cut">Double-cut</option>
+                    <option value="ES">ES</option>
+                    <option value="Western">Western</option>
+                    <option value="Concert">Concert</option>
+                    <option value="Jazz">Jazz</option>
+                    <option alue="Custom">Custom</option>
                 </select>
             </td>
         </tr>
         <tr>
-            <td class="twoCol1">Saiten:&nbsp;</td>
+            <td class="twoCol1">Seiten:&nbsp;</td>
             <td class="twoCol2">
-                <select value="{$strings}">
-                    <option>6</option>
-                    <option>7</option>
+                <select name="strings">
+                    <option value="6">6</option>
+                    <option value="7">7</option>
                 </select>
-                <select value="{$material}">
-                    <option>Steel</option>
-                    <option>Nylon</option>
+                <select name="string_size">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                </select>
+                <select name="string_material">
+                    <option value="Steel">Steel</option>
+                    <option value="Nylon">Nylon</option>
                 </select>
             </td>
         </tr>
         <tr>
-            <td class="twoCol1">Bünde:&nbsp;</td>
-            <td class="twoCol2"><input type="text" name="frets" value="{$frets}" size="48" /></td>
+            <td class="twoCol1">Buende:&nbsp;</td>
+            <td class="twoCol2"><input type="text" name="frets" value="{$frets}" size="24" /></td>
         </tr>
         <tr>
             <td class="twoCol1">Features:&nbsp;</td>
             <td class="twoCol2"><input type="text" name="features" value="{$features}" size="48" /></td>
+        </tr>
+        <tr>
+            <td class="twoCol1">Pickups:&nbsp;</td>
+            <td class="twoCol2"><input type="text" name="pickups" value="{$pickups}" size="24" /></td>
         </tr>
 		<tr>
 			<td class="twoCol1">&nbsp;</td>

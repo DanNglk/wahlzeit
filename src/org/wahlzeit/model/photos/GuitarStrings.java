@@ -6,6 +6,7 @@ package org.wahlzeit.model.photos;
 public class GuitarStrings {
 
     private int strings;
+    private int size;
     private GuitarStringMaterial material;
 
 
@@ -14,8 +15,9 @@ public class GuitarStrings {
      * @post
      * @methodtype constructor
      */
-    public GuitarStrings(int strings, GuitarStringMaterial material) {
+    public GuitarStrings(int strings, int size, GuitarStringMaterial material) {
         this.strings = strings;
+        this.size = size;
         this.material = material;
     }
 
@@ -47,6 +49,28 @@ public class GuitarStrings {
      * @post
      * @methodtype get
      */
+    public int getSize() {
+        return size;
+    }
+
+
+    /**
+     * @pre size > 0
+     * @post correct value set
+     * @methodtype set
+     */
+    public void setSize(int size) {
+        assert size > 0;
+        this.size = size;
+        assert this.size == size;
+    }
+
+
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public GuitarStringMaterial getMaterial() {
         return material;
     }
@@ -61,5 +85,15 @@ public class GuitarStrings {
         assert material != null;
         this.material = material;
         assert this.material == material;
+    }
+
+
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
+    public String asString() {
+        return strings + " string; size " + size + "; " + material;
     }
 }

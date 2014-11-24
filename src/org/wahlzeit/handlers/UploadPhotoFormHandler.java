@@ -27,6 +27,7 @@ import org.wahlzeit.model.*;
 import org.wahlzeit.model.location.GPSLocation;
 import org.wahlzeit.model.location.Location;
 import org.wahlzeit.model.location.MapcodeLocation;
+import org.wahlzeit.model.photos.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
@@ -51,7 +52,6 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	protected void doMakeWebPart(UserSession us, WebPart part) {
 		Map<String, Object> args = us.getSavedArgs();
 		part.addStringFromArgs(args, UserSession.MESSAGE);
-
 		part.maskAndAddStringFromArgs(args, Photo.TAGS);
 	}
 	
@@ -60,9 +60,20 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	 */
 	protected String doHandlePost(UserSession us, Map args) {
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
+
         String mapcode = us.getAndSaveAsString(args, Photo.MAPCODE);
         String latitude = us.getAndSaveAsString(args, Photo.LATITUDE);
         String longitude =us.getAndSaveAsString(args, Photo.LONGITUDE);
+
+        String type = us.getAndSaveAsString(args, GuitarPhoto.TYPE);
+        String shape = us.getAndSaveAsString(args, GuitarPhoto.SHAPE);
+        String strings = us.getAndSaveAsString(args, GuitarPhoto.STRINGS);
+        String stringSize = us.getAndSaveAsString(args, GuitarPhoto.STRING_SIZE);
+        String stringMaterial = us.getAndSaveAsString(args, GuitarPhoto.STRING_MATERIAL);
+        String frets = us.getAndSaveAsString(args, GuitarPhoto.FRETS);
+        String features = us.getAndSaveAsString(args, GuitarPhoto.FEATURES);
+        String pickups = us.getAndSaveAsString(args, GuitarPhoto.PICKUPS);
+
 
 		if (!StringUtil.isLegalTagsString(tags)) {
 			us.setMessage(us.cfg().getInputIsInvalid());
@@ -83,7 +94,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			PhotoManager pm = PhotoManager.getInstance();
 			String sourceFileName = us.getAsString(args, "fileName");
 			File file = new File(sourceFileName);
-			Photo photo = pm.createPhoto(file);
+			GuitarPhoto photo = (GuitarPhoto) pm.createPhoto(file);
 
 			String targetFileName = SysConfig.getBackupDir().asString() + photo.getId().asString();
 			createBackup(sourceFileName, targetFileName);
@@ -97,6 +108,13 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
             else if (!latitude.isEmpty() && !longitude.isEmpty())
                 photo.setLocation(new GPSLocation(Double.parseDouble(latitude), Double.parseDouble(longitude)));
 
+            photo.setGuitarType(GuitarType.valueOf(type));
+            photo.setGuitarShape(GuitarShape.valueOf(shape));
+            photo.setGuitarStrings(new GuitarStrings(Integer.valueOf(strings), Integer.valueOf(stringSize),
+                    GuitarStringMaterial.valueOf(stringMaterial)));
+            photo.setFrets(Integer.valueOf(frets));
+            photo.setFeatures(features);
+            photo.setPickups(Integer.valueOf(pickups));
 			pm.savePhoto(photo);
 
 			StringBuffer sb = UserLog.createActionEntry("UploadPhoto");
@@ -108,7 +126,6 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			SysLog.logThrowable(ex);
 			us.setMessage(us.cfg().getPhotoUploadFailed());
 		}
-		
 		return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
 	}
 	

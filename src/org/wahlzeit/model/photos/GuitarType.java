@@ -7,5 +7,6 @@ public enum GuitarType {
 
     Acoustic,
     Electric,
-    Semi_acoustic;
+    Semiacoustic,
+    Custom;
 }
