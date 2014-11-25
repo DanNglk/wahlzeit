@@ -110,7 +110,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 
             photo.setGuitarType(GuitarType.valueOf(type));
             photo.setGuitarShape(GuitarShape.valueOf(shape));
-            photo.setGuitarStrings(new GuitarStrings(Integer.valueOf(strings), Integer.valueOf(stringSize),
+            photo.setGuitarStrings(GuitarStringsFactory.getInstance(Integer.valueOf(strings), Integer.valueOf(stringSize),
                     GuitarStringMaterial.valueOf(stringMaterial)));
             photo.setFrets(Integer.valueOf(frets));
             photo.setFeatures(features);

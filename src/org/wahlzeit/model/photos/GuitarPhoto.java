@@ -210,7 +210,7 @@ public class GuitarPhoto extends Photo {
 
         setGuitarType(GuitarType.valueOf(rset.getString("type")));
         setGuitarShape(GuitarShape.valueOf(rset.getString("shape")));
-        setGuitarStrings(new GuitarStrings(rset.getInt("strings"), rset.getInt("string_size"),
+        setGuitarStrings(GuitarStringsFactory.getInstance(rset.getInt("strings"), rset.getInt("string_size"),
                 GuitarStringMaterial.valueOf(rset.getString("string_material"))));
         setFrets(rset.getInt("frets"));
         setFeatures(rset.getString("features"));
