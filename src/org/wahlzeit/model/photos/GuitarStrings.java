@@ -96,4 +96,11 @@ public class GuitarStrings {
     public String asString() {
         return strings + " string; size " + size + "; " + material;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        GuitarStrings guitarStrings = (GuitarStrings) obj;
+        return this.strings == guitarStrings.strings && this.size == guitarStrings.size && this.material == guitarStrings.material;
+    }
 }
