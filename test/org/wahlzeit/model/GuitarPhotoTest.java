@@ -107,7 +107,10 @@ public class GuitarPhotoTest extends TestCase {
 
         try {
             guitarPhoto1.setGuitarStrings(GuitarStringsFactory.getInstance(6, 10, GuitarStringMaterial.Nylon));
-            guitarPhoto2.setGuitarStrings(new GuitarStrings(6, 10, GuitarStringMaterial.Nylon));
+            guitarPhoto2.setGuitarStrings(new GuitarStrings.Builder().setStrings(6)
+                                                                     .setSize(10)
+                                                                     .setMaterial(GuitarStringMaterial.Nylon)
+                                                                     .build());
             assertTrue(guitarPhoto1.getGuitarStrings().equals(guitarPhoto2.getGuitarStrings()));
         } catch (Exception e) {
             fail();
@@ -121,7 +124,10 @@ public class GuitarPhotoTest extends TestCase {
 
         try {
             guitarPhoto1.setGuitarStrings(GuitarStringsFactory.getInstance(6, 10, GuitarStringMaterial.Nylon));
-            guitarPhoto2.setGuitarStrings(new GuitarStrings(6, 10, GuitarStringMaterial.Nylon));
+            guitarPhoto2.setGuitarStrings(new GuitarStrings.Builder().setStrings(6)
+                                                                     .setSize(10)
+                                                                     .setMaterial(GuitarStringMaterial.Nylon)
+                                                                     .build());
             assertFalse(guitarPhoto1.getGuitarStrings() == guitarPhoto2.getGuitarStrings());
         } catch (Exception e) {
             fail();

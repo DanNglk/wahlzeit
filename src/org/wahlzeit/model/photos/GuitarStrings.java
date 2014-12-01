@@ -5,9 +5,61 @@ package org.wahlzeit.model.photos;
  */
 public class GuitarStrings {
 
-    private int strings;
-    private int size;
-    private GuitarStringMaterial material;
+    private final int strings;
+    private final int size;
+    private final GuitarStringMaterial material;
+
+
+    public static class Builder {
+
+        private int strings;
+        private int size;
+        private GuitarStringMaterial material;
+
+
+        /**
+         * @pre strings > 4
+         * @post correct value set
+         * @methodtype set
+         */
+        public Builder setStrings(int strings) {
+            assert strings > 4;
+            this.strings = strings;
+            assert this.strings == strings;
+            return this;
+        }
+
+
+        /**
+         * @pre size > 0
+         * @post correct value set
+         * @methodtype set
+         */
+        public Builder setSize(int size) {
+            assert size > 0;
+            this.size = size;
+            assert this.size == size;
+            return this;
+        }
+
+
+        /**
+         * @pre material != null
+         * @post correct value set
+         * @methodtype set
+         */
+        public Builder setMaterial(GuitarStringMaterial material) {
+            assert material != null;
+            this.material = material;
+            assert this.material == material;
+            return this;
+        }
+
+
+        public GuitarStrings build() {
+            return new GuitarStrings(this);
+        }
+    }
 
 
     /**
@@ -15,10 +67,10 @@ public class GuitarStrings {
      * @post
      * @methodtype constructor
      */
-    public GuitarStrings(int strings, int size, GuitarStringMaterial material) {
-        this.strings = strings;
-        this.size = size;
-        this.material = material;
+    public GuitarStrings(Builder builder) {
+        this.strings = builder.strings;
+        this.size = builder.size;
+        this.material = builder.material;
     }
 
 
@@ -33,18 +85,6 @@ public class GuitarStrings {
 
 
     /**
-     * @pre strings > 4
-     * @post correct value set
-     * @methodtype set
-     */
-    public void setStrings(int strings) {
-        assert strings > 4;
-        this.strings = strings;
-        assert this.strings == strings;
-    }
-
-
-    /**
      * @pre
      * @post
      * @methodtype get
@@ -55,36 +95,12 @@ public class GuitarStrings {
 
 
     /**
-     * @pre size > 0
-     * @post correct value set
-     * @methodtype set
-     */
-    public void setSize(int size) {
-        assert size > 0;
-        this.size = size;
-        assert this.size == size;
-    }
-
-
-    /**
      * @pre
      * @post
      * @methodtype get
      */
     public GuitarStringMaterial getMaterial() {
         return material;
-    }
-
-
-    /**
-     * @pre material != null
-     * @post correct value set
-     * @methodtype set
-     */
-    public void setMaterial(GuitarStringMaterial material) {
-        assert material != null;
-        this.material = material;
-        assert this.material == material;
     }
 
 

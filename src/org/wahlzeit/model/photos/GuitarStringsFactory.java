@@ -14,7 +14,10 @@ public class GuitarStringsFactory {
     public static GuitarStrings getInstance(int strings, int size, GuitarStringMaterial material) {
         long hashCode = getGuitarStringsHash(strings, size, material);
         if (!guitarStringsMap.containsKey(hashCode))
-            guitarStringsMap.put(hashCode, new GuitarStrings(strings, size, material));
+            guitarStringsMap.put(hashCode, new GuitarStrings.Builder().setStrings(strings)
+                                                                      .setSize(size)
+                                                                      .setMaterial(material)
+                                                                      .build());
 
         return guitarStringsMap.get(hashCode);
     }
