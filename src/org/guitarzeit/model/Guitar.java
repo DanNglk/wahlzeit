@@ -1,5 +1,6 @@
 package org.guitarzeit.model;
 
+import org.wahlzeit.model.PhotoId;
 import org.wahlzeit.services.DataObject;
 
 import java.sql.PreparedStatement;
@@ -29,6 +30,7 @@ public class Guitar extends DataObject {
     public static final String PICKUPS = "pickups";
 
 
+    private PhotoId photoId;
     private GuitarId guitarId;
     private GuitarType guitarType;
     private GuitarShape guitarShape;
@@ -57,6 +59,14 @@ public class Guitar extends DataObject {
         readFrom(resultSet);
     }
 
+
+    public PhotoId getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(PhotoId photoId) {
+        this.photoId = photoId;
+    }
 
     public GuitarId getGuitarId() {
         return guitarId;
@@ -136,6 +146,7 @@ public class Guitar extends DataObject {
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
+        this.photoId = PhotoId.getIdFromInt(rset.getInt("photo_id"));
         this.guitarId = GuitarId.getIdFromInt(rset.getInt("guitar_id"));
         this.guitarType = GuitarType.valueOf(rset.getString("guitar_type"));
         this.guitarShape = GuitarShape.valueOf(rset.getString("guitar_shape"));
@@ -149,6 +160,7 @@ public class Guitar extends DataObject {
 
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
+        rset.updateInt("photo_id", photoId.asInt());
         rset.updateInt("guitar_id", guitarId.asInt());
         rset.updateString("guitar_type", guitarType.name());
         rset.updateString("guitar_shape", guitarShape.name());
