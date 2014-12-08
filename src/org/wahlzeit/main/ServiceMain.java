@@ -23,6 +23,8 @@ package org.wahlzeit.main;
 import java.io.*;
 import javax.servlet.*;
 
+import org.guitarzeit.handlers.ShowGuitarPhotoPageHandler;
+import org.guitarzeit.handlers.UploadGuitarPhotoFormHandler;
 import org.wahlzeit.agents.AgentManager;
 import org.wahlzeit.handlers.*;
 import org.wahlzeit.model.*;
@@ -134,9 +136,11 @@ public class ServiceMain extends ModelMain {
 		manager.addWebPartHandler(PartUtil.PRAISE_PHOTO_FORM_NAME, new PraisePhotoFormHandler());
 
 		temp = new ShowPhotoPageHandler();
-		manager.addWebPartHandler(PartUtil.SHOW_PHOTO_PAGE_NAME, temp);
+		//manager.addWebPartHandler(PartUtil.SHOW_PHOTO_PAGE_NAME, temp);
 		manager.addWebPartHandler(PartUtil.ENGAGE_GUEST_FORM_NAME, temp);
-		
+
+        manager.addWebPartHandler(PartUtil.SHOW_GUITAR_PHOTO_PAGE_NAME, new ShowGuitarPhotoPageHandler());
+
 		manager.addWebPartHandler(PartUtil.FILTER_PHOTOS_PAGE_NAME, new FilterPhotosPageHandler());
 
 		manager.addWebPartHandler(PartUtil.RESET_SESSION_PAGE_NAME, new ResetSessionPageHandler());
@@ -199,9 +203,13 @@ public class ServiceMain extends ModelMain {
 		manager.addWebPartHandler(PartUtil.CHANGE_PASSWORD_PAGE_NAME, new ShowPartPageHandler(AccessRights.USER, temp));
 		temp = manager.addWebPartHandler(PartUtil.EDIT_USER_PHOTO_FORM_NAME, new EditUserPhotoFormHandler());
 		manager.addWebPartHandler(PartUtil.EDIT_USER_PHOTO_PAGE_NAME, new ShowPartPageHandler(AccessRights.USER, temp));
-		temp = manager.addWebPartHandler(PartUtil.UPLOAD_PHOTO_FORM_NAME, new UploadPhotoFormHandler());
-		manager.addWebPartHandler(PartUtil.UPLOAD_PHOTO_PAGE_NAME, new ShowPartPageHandler(AccessRights.USER, temp));
-		
+
+        //temp = manager.addWebPartHandler(PartUtil.UPLOAD_PHOTO_FORM_NAME, new UploadPhotoFormHandler());
+		//manager.addWebPartHandler(PartUtil.UPLOAD_PHOTO_PAGE_NAME, new ShowPartPageHandler(AccessRights.USER, temp));
+
+        temp = manager.addWebPartHandler(PartUtil.UPLOAD_PHOTO_FORM_NAME, new UploadGuitarPhotoFormHandler());
+        manager.addWebPartHandler(PartUtil.UPLOAD_GUITAR_PHOTO_PAGE_NAME, new ShowPartPageHandler(AccessRights.USER, temp));
+
 		manager.addWebPartHandler(PartUtil.EDIT_PHOTO_CASE_FORM_NAME, new EditPhotoCaseFormHandler());
 		manager.addWebPartHandler(PartUtil.SHOW_PHOTO_CASES_PAGE_NAME, new ShowPhotoCasesPageHandler());
 

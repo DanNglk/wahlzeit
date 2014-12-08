@@ -22,7 +22,7 @@ package org.wahlzeit.model;
 
 import java.sql.*;
 
-import org.wahlzeit.model.photos.GuitarPhoto;
+import org.guitarzeit.model.GuitarPhoto;
 import org.wahlzeit.services.*;
 
 /**
@@ -79,21 +79,21 @@ public class PhotoFactory {
 	 * @methodtype factory
 	 */
 	public Photo createPhoto() {
-		return new GuitarPhoto();
+		return new Photo();
 	}
 	
 	/**
 	 * 
 	 */
 	public Photo createPhoto(PhotoId id) {
-		return new GuitarPhoto(id);
+		return new Photo(id);
 	}
 	
 	/**
 	 * 
 	 */
 	public Photo createPhoto(ResultSet rs) throws SQLException {
-		return new GuitarPhoto(rs);
+		return new Photo(rs);
 	}
 	
 	/**

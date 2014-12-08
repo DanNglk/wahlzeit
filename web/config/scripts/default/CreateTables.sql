@@ -32,6 +32,11 @@ CREATE TABLE photos (
 	creation_time bigint,
 	latitude decimal,
 	longitude decimal,
+);
+
+CREATE TABLE guitars (
+	id integer PRIMARY KEY,
+	photo_id integer REFERENCES photos(id),
 	type text,
 	shape text,
 	strings integer,

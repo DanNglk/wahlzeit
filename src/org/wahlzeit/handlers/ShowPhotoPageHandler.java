@@ -23,8 +23,6 @@ package org.wahlzeit.handlers;
 import java.util.*;
 
 import org.wahlzeit.model.*;
-import org.wahlzeit.model.photos.GuitarPhoto;
-import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 
@@ -159,16 +157,10 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 	 * 
 	 */
 	protected void makePhotoCaption(UserSession us, WebPart page) {
-		GuitarPhoto photo = (GuitarPhoto) us.getPhoto();
+		Photo photo = us.getPhoto();
 			
 		WebPart caption = createWebPart(us, PartUtil.CAPTION_INFO_FILE);
         caption.addString(Photo.LOCATION_CAPTION, photo.getLocation().asString());
-        caption.addString(GuitarPhoto.TYPE_CAPTION, photo.getGuitarType().name());
-        caption.addString(GuitarPhoto.SHAPE_CAPTION, photo.getGuitarShape().name());
-        caption.addString(GuitarPhoto.STRINGS_CAPTION, photo.getGuitarStrings().asString());
-        caption.addString(GuitarPhoto.FRETS_CAPTION, photo.getFrets() + "");
-        caption.addString(GuitarPhoto.FEATURES_CAPTION, photo.getFeatures());
-        caption.addString(GuitarPhoto.PICKUPS_CAPTION, photo.getPickups() + "");
 
         page.addWritable(Photo.CAPTION, caption);
 	}

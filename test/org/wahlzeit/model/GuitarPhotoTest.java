@@ -1,7 +1,7 @@
 package org.wahlzeit.model;
 
 import junit.framework.TestCase;
-import org.wahlzeit.model.photos.*;
+import org.guitarzeit.model.*;
 
 /**
  * Created by cdan on 24/11/14.

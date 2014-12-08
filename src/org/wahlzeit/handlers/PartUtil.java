@@ -54,6 +54,8 @@ public interface PartUtil {
 	public static final String ENGAGE_GUEST_FORM_NAME = "engageGuestForm";
 	public static final String ENGAGE_GUEST_FORM_FILE = "forms/EngageGuestForm";
 
+    public static final String SHOW_GUITAR_PHOTO_PAGE_NAME = "index";
+
 	public static final String ABOUT_PAGE_NAME = "about";
 	public static final String ABOUT_INFO_FILE = "infos/AboutInfo";
 	
@@ -138,8 +140,10 @@ public interface PartUtil {
 	public static final String UPLOAD_PHOTO_PAGE_NAME = "upload";
 	public static final String UPLOAD_PHOTO_FORM_NAME = "uploadPhotoForm";
 	public static final String UPLOAD_PHOTO_FORM_FILE = "forms/UploadPhotoForm";
-	
-	public static final String EDIT_USER_PHOTO_PAGE_NAME = "photo";
+
+    public static final String UPLOAD_GUITAR_PHOTO_PAGE_NAME = "upload";
+
+    public static final String EDIT_USER_PHOTO_PAGE_NAME = "photo";
 	public static final String EDIT_USER_PHOTO_FORM_NAME = "editUserPhotoForm";
 	public static final String EDIT_USER_PHOTO_FORM_FILE = "forms/EditUserPhotoForm";
 	

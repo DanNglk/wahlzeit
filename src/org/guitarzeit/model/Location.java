@@ -1,4 +1,4 @@
-package org.wahlzeit.model.location;
+package org.guitarzeit.model;
 
 /**
  * Created by cdan on 03/11/14.

@@ -1,9 +1,9 @@
 package org.wahlzeit.model;
 
 import junit.framework.TestCase;
-import org.wahlzeit.model.location.GPSLocation;
-import org.wahlzeit.model.location.Location;
-import org.wahlzeit.model.location.MapcodeLocation;
+import org.guitarzeit.model.GPSLocation;
+import org.guitarzeit.model.Location;
+import org.guitarzeit.model.MapcodeLocation;
 
 /**
  * Created by cdan on 03/11/14.

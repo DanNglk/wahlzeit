@@ -1,4 +1,4 @@
-package org.wahlzeit.model.location;
+package org.guitarzeit.model;
 
 import com.mapcode.MapcodeCodec;
 import com.mapcode.Point;

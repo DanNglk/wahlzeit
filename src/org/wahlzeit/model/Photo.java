@@ -23,8 +23,8 @@ package org.wahlzeit.model;
 import java.sql.*;
 import java.net.*;
 
-import org.wahlzeit.model.location.GPSLocation;
-import org.wahlzeit.model.location.Location;
+import org.guitarzeit.model.GPSLocation;
+import org.guitarzeit.model.Location;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 
@@ -151,7 +151,7 @@ public class Photo extends DataObject {
 	public String getIdAsString() {
 		return String.valueOf(id.asInt());
 	}
-	
+
 	/**
 	 * 
 	 */
