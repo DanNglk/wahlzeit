@@ -55,4 +55,9 @@ public class GuitarManufacturer {
     public void setHeadOffice(String headOffice) {
         this.headOffice = headOffice;
     }
+
+
+    public String asString() {
+        return name + " " + establishedSince + " " + headOffice;
+    }
 }

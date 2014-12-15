@@ -135,11 +135,11 @@ public class ServiceMain extends ModelMain {
 		manager.addWebPartHandler(PartUtil.FILTER_PHOTOS_FORM_NAME, new FilterPhotosFormHandler());
 		manager.addWebPartHandler(PartUtil.PRAISE_PHOTO_FORM_NAME, new PraisePhotoFormHandler());
 
-		temp = new ShowPhotoPageHandler();
-		//manager.addWebPartHandler(PartUtil.SHOW_PHOTO_PAGE_NAME, temp);
+		temp = new ShowGuitarPhotoPageHandler();
+		manager.addWebPartHandler(PartUtil.SHOW_PHOTO_PAGE_NAME, temp);
 		manager.addWebPartHandler(PartUtil.ENGAGE_GUEST_FORM_NAME, temp);
 
-        manager.addWebPartHandler(PartUtil.SHOW_GUITAR_PHOTO_PAGE_NAME, new ShowGuitarPhotoPageHandler());
+        //manager.addWebPartHandler(PartUtil.SHOW_GUITAR_PHOTO_PAGE_NAME, new ShowGuitarPhotoPageHandler());
 
 		manager.addWebPartHandler(PartUtil.FILTER_PHOTOS_PAGE_NAME, new FilterPhotosPageHandler());
 
