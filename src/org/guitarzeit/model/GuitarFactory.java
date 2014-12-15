@@ -13,6 +13,11 @@ public class GuitarFactory {
     public static GuitarFactory guitarFactory = null;
 
 
+    /**
+     * @pre
+     * @post Return singleton instance of GuitarFactory
+     * @methodtype get
+     */
     public static synchronized GuitarFactory getInstance() {
         if (guitarFactory == null) {
             guitarFactory = new GuitarFactory();
@@ -21,11 +26,21 @@ public class GuitarFactory {
     }
 
 
+    /**
+     * @pre
+     * @post Creates guitar by id
+     * @methodtype factory
+     */
     public Guitar createGuitar(GuitarId guitarId) {
         return new Guitar(guitarId);
     }
 
 
+    /**
+     * @pre
+     * @post Creates guitar by result set
+     * @methodtype factory
+     */
     public Guitar createGuitar(ResultSet rs) throws SQLException {
         return new Guitar(rs);
     }

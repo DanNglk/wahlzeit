@@ -18,6 +18,11 @@ public class GuitarPhotoManager extends PhotoManager {
     private static GuitarPhotoManager guitarPhotoManager = null;
 
 
+    /**
+     * @pre
+     * @post Return singleton instance of GuitarPhotoManager
+     * @methodtype get
+     */
     public static GuitarPhotoManager getInstance() {
         if(guitarPhotoManager == null)
             guitarPhotoManager = new GuitarPhotoManager();

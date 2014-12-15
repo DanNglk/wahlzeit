@@ -63,81 +63,151 @@ public class Guitar extends DataObject {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public GuitarId getGuitarId() {
         return guitarId;
     }
 
 
-    public void setGuitarId(GuitarId guitarId) {
-        this.guitarId = guitarId;
-    }
-
-
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public GuitarType getGuitarType() {
         return guitarType;
     }
 
 
+    /**
+     * @pre
+     * @post correct value set
+     * @methodtype set
+     */
     public void setGuitarType(GuitarType guitarType) {
         this.guitarType = guitarType;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public GuitarShape getGuitarShape() {
         return guitarShape;
     }
 
 
+    /**
+     * @pre
+     * @post correct value set
+     * @methodtype set
+     */
     public void setGuitarShape(GuitarShape guitarShape) {
         this.guitarShape = guitarShape;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public GuitarStrings getGuitarStrings() {
         return guitarStrings;
     }
 
 
+    /**
+     * @pre
+     * @post correct value set
+     * @methodtype set
+     */
     public void setGuitarStrings(GuitarStrings guitarStrings) {
         this.guitarStrings = guitarStrings;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public GuitarManufacturer getGuitarManufacturer() {
         return guitarManufacturer;
     }
 
 
+    /**
+     * @pre
+     * @post correct value set
+     * @methodtype set
+     */
     public void setGuitarManufacturer(GuitarManufacturer guitarManufacturer) {
         this.guitarManufacturer = guitarManufacturer;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public int getFrets() {
         return frets;
     }
 
 
+    /**
+     * @pre
+     * @post correct value set
+     * @methodtype set
+     */
     public void setFrets(int frets) {
         this.frets = frets;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public String getFeatures() {
         return features;
     }
 
 
+    /**
+     * @pre
+     * @post correct value set
+     * @methodtype set
+     */
     public void setFeatures(String features) {
         this.features = features;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     */
     public int getPickups() {
         return pickups;
     }
 
 
+    /**
+     * @pre
+     * @post correct value set
+     * @methodtype set
+     */
     public void setPickups(int pickups) {
         this.pickups = pickups;
     }
@@ -156,7 +226,7 @@ public class Guitar extends DataObject {
         this.guitarShape = GuitarShape.valueOf(rset.getString("shape"));
         this.guitarStrings = GuitarStringsFactory.getInstance(rset.getInt("strings"), rset.getInt("strings_size"),
                 GuitarStringMaterial.valueOf(rset.getString("strings_material")));
-        this.guitarManufacturer = new GuitarManufacturer(rset.getString("manufacturer_name"), rset.getDate("manufacturer_established"),
+        this.guitarManufacturer = new GuitarManufacturer(rset.getString("manufacturer_name"), rset.getInt("manufacturer_founded"),
                 rset.getString("manufacturer_headoffice"));
         this.frets = rset.getInt("frets");
         this.features = rset.getString("features");
@@ -173,7 +243,7 @@ public class Guitar extends DataObject {
         rset.updateInt("strings_size", guitarStrings.getSize());
         rset.updateString("strings_size", guitarStrings.getMaterial().name());
         rset.updateString("manufacturer_name", guitarManufacturer.getName());
-        rset.updateDate("manufacturer_established", guitarManufacturer.getEstablishedSince());
+        rset.updateInt("manufacturer_founded", guitarManufacturer.getFounded());
         rset.updateString("manufacturer_headoffice", guitarManufacturer.getHeadOffice());
         rset.updateInt("frets", getFrets());
         rset.updateString("features", getFeatures());

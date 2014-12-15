@@ -18,6 +18,11 @@ public class GuitarManager extends ObjectManager {
     private Map<GuitarId, Guitar> guitarCache = new HashMap<GuitarId, Guitar>();
 
 
+    /**
+     * @pre
+     * @post get singleton instance of GuitarManager
+     * @methodtype get
+     */
     public static final GuitarManager getInstance() {
         if (instance == null)
             instance = new GuitarManager();
@@ -31,6 +36,11 @@ public class GuitarManager extends ObjectManager {
     }
 
 
+    /**
+     * @pre
+     * @post Creates new guitar object
+     * @methodtype factory
+     */
     public Guitar createGuitar() {
         GuitarId id = GuitarId.getNextId();
         Guitar guitar = GuitarFactory.getInstance().createGuitar(id);
@@ -39,6 +49,11 @@ public class GuitarManager extends ObjectManager {
     }
 
 
+    /**
+     * @pre
+     * @post Inserts guitar object into database
+     * @methodtype command
+     */
     public void addGuitar(Guitar guitar) {
         GuitarId id = guitar.getGuitarId();
         assertIsNewGuitar(id);
@@ -54,12 +69,21 @@ public class GuitarManager extends ObjectManager {
         }
     }
 
-
+    /**
+     * @pre
+     * @post adds guitar to cache
+     * @methodtype command
+     */
     protected void doAddGuitar(Guitar myGuitar) {
         guitarCache.put(myGuitar.getGuitarId(), myGuitar);
     }
 
 
+    /**
+     * @pre
+     * @post returns guitar from database by selecting from id
+     * @methodtype get
+     */
     public Guitar getGuitarFromId(GuitarId id) {
         if (id.isNullId()) {
             return null;
@@ -83,11 +107,21 @@ public class GuitarManager extends ObjectManager {
     }
 
 
+    /**
+     * @pre
+     * @post get guitar from cache by id
+     * @methodtype get
+     */
     protected Guitar doGetGuitarFromId(GuitarId id) {
         return guitarCache.get(id);
     }
 
 
+    /**
+     * @pre
+     * @post saves guitar to database by selecting and updating guitar
+     * @methodtype command
+     */
     public void saveGuitar(Guitar guitar) {
         try {
             PreparedStatement stmt = getUpdatingStatement("SELECT * FROM guitars WHERE id = ?");
@@ -98,14 +132,14 @@ public class GuitarManager extends ObjectManager {
     }
 
 
+    /**
+     * @pre
+     * @post asserts if guitar exists, if so new IllegalStateException is thrown
+     * @methodtype assertion
+     */
     protected void assertIsNewGuitar(GuitarId id) {
         if (getGuitarFromId(id) != null)  {
             throw new IllegalStateException("Guitar already exists!");
         }
-    }
-
-
-    protected boolean doHasGuitar(GuitarId id) {
-        return guitarCache.containsKey(id);
     }
 }

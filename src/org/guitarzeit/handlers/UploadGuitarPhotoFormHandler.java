@@ -11,6 +11,7 @@ import org.wahlzeit.utils.StringUtil;
 
 import java.io.File;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 /**
@@ -54,7 +55,7 @@ public class UploadGuitarPhotoFormHandler extends UploadPhotoFormHandler {
             photo.getGuitar().setGuitarShape(GuitarShape.valueOf(shape));
             photo.getGuitar().setGuitarStrings(GuitarStringsFactory.getInstance(Integer.valueOf(strings), Integer.valueOf(stringSize),
                     GuitarStringMaterial.valueOf(stringMaterial)));
-            photo.getGuitar().setGuitarManufacturer(new GuitarManufacturer(manufacturerName, new Date(Integer.valueOf(manufacturerEstablished)),
+            photo.getGuitar().setGuitarManufacturer(new GuitarManufacturer(manufacturerName, Integer.valueOf(manufacturerEstablished),
                     manufacturerHeadOffice));
             photo.getGuitar().setFrets(Integer.valueOf(frets));
             photo.getGuitar().setFeatures(features);

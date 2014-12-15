@@ -23,7 +23,7 @@ CREATE TABLE guitars (
 	string_size integer,
 	string_material text,
 	manufacturer_name text,
-	manufacturer_established bigint,
+	manufacturer_established integer,
 	manufacturer_headoffice text,
 	frets integer,
 	features text,

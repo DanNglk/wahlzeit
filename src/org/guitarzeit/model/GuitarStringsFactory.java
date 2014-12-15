@@ -11,6 +11,11 @@ public class GuitarStringsFactory {
     private static Map<Integer, GuitarStrings> guitarStringsMap = new HashMap<>();
 
 
+    /**
+     * @pre
+     * @post Creates GuitarStrings object by attributes and pushes object into map for sharing
+     * @methodtype factory
+     */
     public static GuitarStrings getInstance(int strings, int size, GuitarStringMaterial material) {
         int hashCode = getGuitarStringsHash(strings, size, material);
         if (!guitarStringsMap.containsKey(hashCode))
@@ -23,6 +28,11 @@ public class GuitarStringsFactory {
     }
 
 
+    /**
+     * @pre
+     * @post Generates hash code for specific attributes
+     * @methodtype utility
+     */
     private static int getGuitarStringsHash(Integer strings, Integer size, GuitarStringMaterial material) {
         return new StringBuilder().append(strings.hashCode())
                                   .append(size.hashCode())
