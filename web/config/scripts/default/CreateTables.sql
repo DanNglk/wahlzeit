@@ -32,16 +32,19 @@ CREATE TABLE photos (
 	creation_time bigint,
 	latitude decimal,
 	longitude decimal,
+	guitar_id integer REFERENCES guitars(id)
 );
 
 CREATE TABLE guitars (
 	id integer PRIMARY KEY,
-	photo_id integer REFERENCES photos(id),
 	type text,
 	shape text,
 	strings integer,
 	string_size integer,
 	string_material text,
+	manufacturer_name text,
+	manufacturer_established bigint,
+	manufacturer_headoffice text,
 	frets integer,
 	features text,
 	pickups integer

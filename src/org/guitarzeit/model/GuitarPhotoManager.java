@@ -66,7 +66,7 @@ public class GuitarPhotoManager extends PhotoManager {
     @Override
     public GuitarPhoto getPhotoFromId(PhotoId id) {
         GuitarPhoto guitarPhoto = (GuitarPhoto) super.getPhotoFromId(id);
-        Guitar guitar = GuitarManager.getInstance().getGuitarFromPhoto(guitarPhoto);
+        Guitar guitar = GuitarManager.getInstance().getGuitarFromId(guitarPhoto.getGuitar().getGuitarId());
         guitarPhoto.setGuitar(guitar);
         return guitarPhoto;
     }

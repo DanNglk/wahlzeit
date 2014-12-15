@@ -10,6 +10,7 @@ import org.wahlzeit.utils.LocationUtil;
 import org.wahlzeit.utils.StringUtil;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.Map;
 
 /**
@@ -28,34 +29,17 @@ public class UploadGuitarPhotoFormHandler extends UploadPhotoFormHandler {
         String strings = us.getAndSaveAsString(args, Guitar.STRINGS);
         String stringSize = us.getAndSaveAsString(args, Guitar.STRING_SIZE);
         String stringMaterial = us.getAndSaveAsString(args, Guitar.STRING_MATERIAL);
+        String manufacturerName = us.getAndSaveAsString(args, Guitar.MANUFACTURER_NAME);
+        String manufacturerEstablished = us.getAndSaveAsString(args, Guitar.MANUFACTURER_ESTABLISHED);
+        String manufacturerHeadOffice = us.getAndSaveAsString(args, Guitar.MANUFACTURER_HEADOFFICE);
         String frets = us.getAndSaveAsString(args, Guitar.FRETS);
         String features = us.getAndSaveAsString(args, Guitar.FEATURES);
         String pickups = us.getAndSaveAsString(args, Guitar.PICKUPS);
 
-
-        if (!StringUtil.isLegalTagsString(tags)) {
-            us.setMessage(us.cfg().getInputIsInvalid());
-            return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
-        }
-
-        if (!LocationUtil.isLegalMapcode(mapcode)) {
-            us.setMessage(us.cfg().getInputIsInvalid());
-            return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
-        }
-
-        if (!LocationUtil.isLegalGPSCoordinate(latitude) && !LocationUtil.isLegalGPSCoordinate(longitude)) {
-            us.setMessage(us.cfg().getInputIsInvalid());
-            return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
-        }
-
         try {
             GuitarPhotoManager pm = GuitarPhotoManager.getInstance();
             String sourceFileName = us.getAsString(args, "fileName");
-            File file = new File(sourceFileName);
-            GuitarPhoto photo = pm.createPhoto(file);
-
-            String targetFileName = SysConfig.getBackupDir().asString() + photo.getId().asString();
-            createBackup(sourceFileName, targetFileName);
+            GuitarPhoto photo = pm.createPhoto(new File(sourceFileName));
 
             User user = (User) us.getClient();
             user.addPhoto(photo);
@@ -70,6 +54,8 @@ public class UploadGuitarPhotoFormHandler extends UploadPhotoFormHandler {
             photo.getGuitar().setGuitarShape(GuitarShape.valueOf(shape));
             photo.getGuitar().setGuitarStrings(GuitarStringsFactory.getInstance(Integer.valueOf(strings), Integer.valueOf(stringSize),
                     GuitarStringMaterial.valueOf(stringMaterial)));
+            photo.getGuitar().setGuitarManufacturer(new GuitarManufacturer(manufacturerName, new Date(Integer.valueOf(manufacturerEstablished)),
+                    manufacturerHeadOffice));
             photo.getGuitar().setFrets(Integer.valueOf(frets));
             photo.getGuitar().setFeatures(features);
             photo.getGuitar().setPickups(Integer.valueOf(pickups));

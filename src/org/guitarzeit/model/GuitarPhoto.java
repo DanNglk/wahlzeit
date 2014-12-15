@@ -64,7 +64,7 @@ public class GuitarPhoto extends Photo {
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
         super.readFrom(rset);
-        guitar.readFrom(rset);
+        guitar = GuitarFactory.getInstance().createGuitar(GuitarId.getIdFromInt(rset.getInt("guitar_id")));
     }
 
 
@@ -76,6 +76,6 @@ public class GuitarPhoto extends Photo {
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
         super.writeOn(rset);
-        guitar.writeOn(rset);
+        rset.updateInt("guitar_id", guitar.getGuitarId().asInt());
     }
 }

@@ -1,6 +1,5 @@
 package org.guitarzeit.model;
 
-import org.wahlzeit.model.PhotoId;
 import org.wahlzeit.services.DataObject;
 
 import java.sql.PreparedStatement;
@@ -15,6 +14,7 @@ public class Guitar extends DataObject {
     public static final String TYPE_CAPTION = "type";
     public static final String SHAPE_CAPTION = "shape";
     public static final String STRINGS_CAPTION = "strings";
+    public static final String MANUFACTURER_CAPTION = "manufacturer";
     public static final String FRETS_CAPTION = "frets";
     public static final String FEATURES_CAPTION = "features";
     public static final String PICKUPS_CAPTION = "pickups";
@@ -25,16 +25,19 @@ public class Guitar extends DataObject {
     public static final String STRINGS = "strings";
     public static final String STRING_SIZE = "string_size";
     public static final String STRING_MATERIAL = "string_material";
+    public static final String MANUFACTURER_NAME = "manufacturer_name";
+    public static final String MANUFACTURER_ESTABLISHED = "manufacturer_established";
+    public static final String MANUFACTURER_HEADOFFICE = "manufacturer_headoffice";
     public static final String FRETS = "frets";
     public static final String FEATURES = "features";
     public static final String PICKUPS = "pickups";
 
 
-    private PhotoId photoId;
     private GuitarId guitarId;
     private GuitarType guitarType;
     private GuitarShape guitarShape;
     private GuitarStrings guitarStrings;
+    private GuitarManufacturer guitarManufacturer;
     private int frets;
     private String features;
     private int pickups;
@@ -59,14 +62,6 @@ public class Guitar extends DataObject {
         readFrom(resultSet);
     }
 
-
-    public PhotoId getPhotoId() {
-        return photoId;
-    }
-
-    public void setPhotoId(PhotoId photoId) {
-        this.photoId = photoId;
-    }
 
     public GuitarId getGuitarId() {
         return guitarId;
@@ -108,6 +103,16 @@ public class Guitar extends DataObject {
     }
 
 
+    public GuitarManufacturer getGuitarManufacturer() {
+        return guitarManufacturer;
+    }
+
+
+    public void setGuitarManufacturer(GuitarManufacturer guitarManufacturer) {
+        this.guitarManufacturer = guitarManufacturer;
+    }
+
+
     public int getFrets() {
         return frets;
     }
@@ -146,30 +151,33 @@ public class Guitar extends DataObject {
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
-        this.photoId = PhotoId.getIdFromInt(rset.getInt("photo_id"));
-        this.guitarId = GuitarId.getIdFromInt(rset.getInt("guitar_id"));
-        this.guitarType = GuitarType.valueOf(rset.getString("guitar_type"));
-        this.guitarShape = GuitarShape.valueOf(rset.getString("guitar_shape"));
-        this.guitarStrings = GuitarStringsFactory.getInstance(rset.getInt("guitar_strings"), rset.getInt("guitar_strings_size"),
-                GuitarStringMaterial.valueOf(rset.getString("guitar_strings_material")));
-        this.frets = rset.getInt("guitar_frets");
-        this.features = rset.getString("guitar_features");
-        this.pickups = rset.getInt("guitar_pickups");
+        this.guitarId = GuitarId.getIdFromInt(rset.getInt("id"));
+        this.guitarType = GuitarType.valueOf(rset.getString("type"));
+        this.guitarShape = GuitarShape.valueOf(rset.getString("shape"));
+        this.guitarStrings = GuitarStringsFactory.getInstance(rset.getInt("strings"), rset.getInt("strings_size"),
+                GuitarStringMaterial.valueOf(rset.getString("strings_material")));
+        this.guitarManufacturer = new GuitarManufacturer(rset.getString("manufacturer_name"), rset.getDate("manufacturer_established"),
+                rset.getString("manufacturer_headoffice"));
+        this.frets = rset.getInt("frets");
+        this.features = rset.getString("features");
+        this.pickups = rset.getInt("pickups");
     }
 
 
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
-        rset.updateInt("photo_id", photoId.asInt());
-        rset.updateInt("guitar_id", guitarId.asInt());
-        rset.updateString("guitar_type", guitarType.name());
-        rset.updateString("guitar_shape", guitarShape.name());
-        rset.updateInt("guitar_strings", guitarStrings.getStrings());
-        rset.updateInt("guitar_strings_size", guitarStrings.getSize());
-        rset.updateString("guitar_strings_size", guitarStrings.getMaterial().name());
-        rset.updateInt("guitar_frets", getFrets());
-        rset.updateString("guitar_features", getFeatures());
-        rset.updateInt("guitar_pickups", getPickups());
+        rset.updateInt("id", guitarId.asInt());
+        rset.updateString("type", guitarType.name());
+        rset.updateString("shape", guitarShape.name());
+        rset.updateInt("strings", guitarStrings.getStrings());
+        rset.updateInt("strings_size", guitarStrings.getSize());
+        rset.updateString("strings_size", guitarStrings.getMaterial().name());
+        rset.updateString("manufacturer_name", guitarManufacturer.getName());
+        rset.updateDate("manufacturer_established", guitarManufacturer.getEstablishedSince());
+        rset.updateString("manufacturer_headoffice", guitarManufacturer.getHeadOffice());
+        rset.updateInt("frets", getFrets());
+        rset.updateString("features", getFeatures());
+        rset.updateInt("pickups", getPickups());
     }
 
 

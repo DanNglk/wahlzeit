@@ -14,12 +14,13 @@ import java.util.*;
  */
 public class GuitarManager extends ObjectManager {
 
-    private static final GuitarManager instance = new GuitarManager();
-
+    private static GuitarManager instance = null;
     private Map<GuitarId, Guitar> guitarCache = new HashMap<GuitarId, Guitar>();
 
 
     public static final GuitarManager getInstance() {
+        if (instance == null)
+            instance = new GuitarManager();
         return instance;
     }
 
@@ -33,7 +34,6 @@ public class GuitarManager extends ObjectManager {
     public Guitar createGuitar() {
         GuitarId id = GuitarId.getNextId();
         Guitar guitar = GuitarFactory.getInstance().createGuitar(id);
-
         addGuitar(guitar);
         return guitar;
     }
@@ -57,21 +57,6 @@ public class GuitarManager extends ObjectManager {
 
     protected void doAddGuitar(Guitar myGuitar) {
         guitarCache.put(myGuitar.getGuitarId(), myGuitar);
-    }
-
-
-    public Guitar getGuitarFromPhoto(GuitarPhoto guitarPhoto) {
-        Guitar result = null;
-        try {
-            PreparedStatement stmt = getReadingStatement("SELECT * FROM guitars WHERE photo_id = ?");
-            result = (Guitar) readObject(stmt, guitarPhoto.getId().asInt());
-        } catch (SQLException sex) {
-            SysLog.logThrowable(sex);
-        }
-        if (result != null) {
-            doAddGuitar(result);
-        }
-        return result;
     }
 
 
