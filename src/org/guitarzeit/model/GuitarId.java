@@ -24,6 +24,12 @@ public class GuitarId {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype set
+     * @collaboration
+     */
     public static synchronized void setCurrentIdFromInt(int id) {
         currentId = id;
         ids = new GuitarId[currentId + BUFFER_SIZE_INCREMENT];
@@ -31,6 +37,12 @@ public class GuitarId {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public static synchronized int getNextIdAsInt() {
         currentId += 1;
         if (currentId >= ids.length) {
@@ -42,6 +54,12 @@ public class GuitarId {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public static GuitarId getIdFromInt(int id) {
         if ((id < 0) || (id > currentId)) {
             return NULL_ID;
@@ -63,16 +81,34 @@ public class GuitarId {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public static GuitarId getIdFromString(String id) {
         return getIdFromInt(getFromString(id));
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public static GuitarId getNextId() {
         return getIdFromInt(getNextIdAsInt());
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public static GuitarId getRandomId() {
         int max = getCurrentIdAsInt() - 1;
         int id = randomNumber.nextInt();
@@ -86,12 +122,24 @@ public class GuitarId {
     protected String stringValue = null;
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype constructor
+     * @collaboration
+     */
     protected GuitarId(int myValue) {
         value = myValue;
         stringValue = getFromInt(myValue);
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype assertion
+     * @collaboration
+     */
     public boolean equals(Object o) {
         // @FIXME
 
@@ -104,31 +152,67 @@ public class GuitarId {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype assertion
+     * @collaboration
+     */
     public boolean isEqual(GuitarId other) {
         return other.value == value;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public int hashCode() {
         return value;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype assertion
+     * @collaboration
+     */
     public boolean isNullId() {
         return this == NULL_ID;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public int asInt() {
         return value;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public String asString() {
         return stringValue;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public static String getFromInt(int id) {
         StringBuffer result = new StringBuffer(10);
 
@@ -149,6 +233,12 @@ public class GuitarId {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration
+     */
     public static int getFromString(String value) {
         int result = 0;
         for (int i = 1; i < value.length(); i ++ ) {

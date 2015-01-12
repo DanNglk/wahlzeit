@@ -4,14 +4,9 @@ import org.guitarzeit.model.*;
 import org.wahlzeit.handlers.PartUtil;
 import org.wahlzeit.handlers.UploadPhotoFormHandler;
 import org.wahlzeit.model.*;
-import org.wahlzeit.services.SysConfig;
 import org.wahlzeit.services.SysLog;
-import org.wahlzeit.utils.LocationUtil;
-import org.wahlzeit.utils.StringUtil;
 
 import java.io.File;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Map;
 
 /**
@@ -19,6 +14,12 @@ import java.util.Map;
  */
 public class UploadGuitarPhotoFormHandler extends UploadPhotoFormHandler {
 
+    /**
+     * @pre
+     * @post
+     * @methodtype command
+     * @collaboration Client
+     */
     @Override
     protected String doHandlePost(UserSession us, Map args) {
         String tags = us.getAndSaveAsString(args, Photo.TAGS);

@@ -18,6 +18,7 @@ public class GuitarPhoto extends Photo {
      * @pre
      * @post
      * @methodtype constructor
+     * @collaboration Manager
      */
     public GuitarPhoto(PhotoId myId) {
         super(myId);
@@ -28,6 +29,7 @@ public class GuitarPhoto extends Photo {
      * @pre
      * @post
      * @methodtype constructor
+     * @collaboration Manager
      */
     public GuitarPhoto(ResultSet rset) throws SQLException {
         super(rset);
@@ -38,6 +40,7 @@ public class GuitarPhoto extends Photo {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client, GuitarPhoto/Guitar
      */
     public Guitar getGuitar() {
         return guitar;
@@ -48,6 +51,7 @@ public class GuitarPhoto extends Photo {
      * @pre guitar != null
      * @post correct value set
      * @methodtype set
+     * @collaboration Client, GuitarPhoto/Guitar
      */
     public void setGuitar(Guitar guitar) {
         assert guitar != null;
@@ -60,6 +64,7 @@ public class GuitarPhoto extends Photo {
      * @pre
      * @post
      * @methodtype mutation
+     * @collaboration Serializer
      */
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
@@ -72,6 +77,7 @@ public class GuitarPhoto extends Photo {
      * @pre
      * @post
      * @methodtype mutation
+     * @collaboration Serializer
      */
     @Override
     public void writeOn(ResultSet rset) throws SQLException {

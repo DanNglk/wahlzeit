@@ -47,6 +47,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post Guitar constructed
      * @methodtype constructor
+     * @collaboration Manager
      */
     public Guitar(GuitarId guitarId) {
         this.guitarId = guitarId;
@@ -57,6 +58,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post Guitar constructed
      * @methodtype constructor
+     * @collaboration Manager
      */
     public Guitar(ResultSet resultSet) throws SQLException {
         readFrom(resultSet);
@@ -67,6 +69,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Manager
      */
     public GuitarId getGuitarId() {
         return guitarId;
@@ -77,6 +80,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client, Value Object
      */
     public GuitarType getGuitarType() {
         return guitarType;
@@ -87,6 +91,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Client, Value Object
      */
     public void setGuitarType(GuitarType guitarType) {
         this.guitarType = guitarType;
@@ -97,6 +102,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client, Value Object
      */
     public GuitarShape getGuitarShape() {
         return guitarShape;
@@ -107,6 +113,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Client, Value Object
      */
     public void setGuitarShape(GuitarShape guitarShape) {
         this.guitarShape = guitarShape;
@@ -117,6 +124,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client, Type Object
      */
     public GuitarStrings getGuitarStrings() {
         return guitarStrings;
@@ -127,6 +135,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Client, Type Object
      */
     public void setGuitarStrings(GuitarStrings guitarStrings) {
         this.guitarStrings = guitarStrings;
@@ -137,6 +146,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client, Type Object
      */
     public GuitarManufacturer getGuitarManufacturer() {
         return guitarManufacturer;
@@ -147,6 +157,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Client, Type Object
      */
     public void setGuitarManufacturer(GuitarManufacturer guitarManufacturer) {
         this.guitarManufacturer = guitarManufacturer;
@@ -157,6 +168,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client
      */
     public int getFrets() {
         return frets;
@@ -167,6 +179,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Client
      */
     public void setFrets(int frets) {
         this.frets = frets;
@@ -177,6 +190,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client
      */
     public String getFeatures() {
         return features;
@@ -187,6 +201,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Client
      */
     public void setFeatures(String features) {
         this.features = features;
@@ -197,6 +212,7 @@ public class Guitar extends DataObject {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Client
      */
     public int getPickups() {
         return pickups;
@@ -207,18 +223,31 @@ public class Guitar extends DataObject {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Client
      */
     public void setPickups(int pickups) {
         this.pickups = pickups;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration Serializer
+     */
     @Override
     public String getIdAsString() {
         return guitarId.asString();
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype mutation
+     * @collaboration Serializer
+     */
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
         this.guitarId = GuitarId.getIdFromInt(rset.getInt("id"));
@@ -234,6 +263,12 @@ public class Guitar extends DataObject {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype mutation
+     * @collaboration Serializer
+     */
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
         rset.updateInt("id", guitarId.asInt());
@@ -251,6 +286,12 @@ public class Guitar extends DataObject {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype mutation
+     * @collaboration Serializer
+     */
     @Override
     public void writeId(PreparedStatement stmt, int pos) throws SQLException {
         stmt.setInt(pos, guitarId.asInt());

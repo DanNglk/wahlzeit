@@ -21,6 +21,7 @@ public class GuitarStrings {
          * @pre strings > 4
          * @post correct value set
          * @methodtype set
+         * @collaboration Type Object
          */
         public Builder setStrings(int strings) {
             assert strings > 4;
@@ -34,6 +35,7 @@ public class GuitarStrings {
          * @pre size > 0
          * @post correct value set
          * @methodtype set
+         * @collaboration Type Object
          */
         public Builder setSize(int size) {
             assert size > 0;
@@ -47,6 +49,7 @@ public class GuitarStrings {
          * @pre material != null
          * @post correct value set
          * @methodtype set
+         * @collaboration Type Object
          */
         public Builder setMaterial(GuitarStringMaterial material) {
             assert material != null;
@@ -66,6 +69,7 @@ public class GuitarStrings {
      * @pre
      * @post
      * @methodtype constructor
+     * @collaboration Type Object
      */
     public GuitarStrings(Builder builder) {
         this.strings = builder.strings;
@@ -78,6 +82,7 @@ public class GuitarStrings {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Type Object
      */
     public int getStrings() {
         return strings;
@@ -88,6 +93,7 @@ public class GuitarStrings {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Type Object
      */
     public int getSize() {
         return size;
@@ -98,6 +104,7 @@ public class GuitarStrings {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Type Object
      */
     public GuitarStringMaterial getMaterial() {
         return material;
@@ -108,12 +115,19 @@ public class GuitarStrings {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Type Object
      */
     public String asString() {
         return strings + " string; size " + size + "; " + material;
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype assertion
+     * @collaboration Type Object
+     */
     @Override
     public boolean equals(Object obj) {
         GuitarStrings guitarStrings = (GuitarStrings) obj;

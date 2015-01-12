@@ -14,6 +14,7 @@ public class GuitarManufacturer {
      * @pre none
      * @post GuitarManufacturer constructed
      * @methodtype constructor
+     * @collaboration Type Object
      */
     public GuitarManufacturer(String name, int founded, String headOffice) {
         this.name = name;
@@ -26,6 +27,7 @@ public class GuitarManufacturer {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Type Object
      */
     public String getName() {
         return name;
@@ -36,6 +38,7 @@ public class GuitarManufacturer {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Type Object
      */
     public void setName(String name) {
         this.name = name;
@@ -46,6 +49,7 @@ public class GuitarManufacturer {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Type Object
      */
     public int getFounded() {
         return founded;
@@ -56,6 +60,7 @@ public class GuitarManufacturer {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Type Object
      */
     public void setFounded(int founded) {
         this.founded = founded;
@@ -66,6 +71,7 @@ public class GuitarManufacturer {
      * @pre
      * @post
      * @methodtype get
+     * @collaboration Type Object
      */
     public String getHeadOffice() {
         return headOffice;
@@ -76,6 +82,7 @@ public class GuitarManufacturer {
      * @pre
      * @post correct value set
      * @methodtype set
+     * @collaboration Type Object
      */
     public void setHeadOffice(String headOffice) {
         this.headOffice = headOffice;
@@ -85,7 +92,8 @@ public class GuitarManufacturer {
     /**
      * @pre
      * @post get string representation of GuitarManufacturer
-     * @methodtype converter
+     * @methodtype conversion
+     * @collaboration Type Object
      */
     public String asString() {
         return name + " " + founded + " " + headOffice;

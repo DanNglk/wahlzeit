@@ -22,6 +22,7 @@ public class GuitarPhotoManager extends PhotoManager {
      * @pre
      * @post Return singleton instance of GuitarPhotoManager
      * @methodtype get
+     * @collaboration Client
      */
     public static GuitarPhotoManager getInstance() {
         if(guitarPhotoManager == null)
@@ -30,12 +31,24 @@ public class GuitarPhotoManager extends PhotoManager {
     }
 
 
+    /**
+     * @pre
+     * @post Creates instance of GuitarPhoto by ResultSet
+     * @methodtype factory
+     * @collaboration Manager
+     */
     @Override
     protected GuitarPhoto createObject(ResultSet rset) throws SQLException {
         return GuitarPhotoFactory.getInstance().createPhoto(rset);
     }
 
 
+    /**
+     * @pre
+     * @post Creates instance of GuitarPhoto by ResultSet
+     * @methodtype factory
+     * @collaboration Manager
+     */
     @Override
     public GuitarPhoto createPhoto(File file) throws Exception {
         PhotoId id = PhotoId.getNextId();
@@ -52,6 +65,12 @@ public class GuitarPhotoManager extends PhotoManager {
     }
 
 
+    /**
+     * @pre
+     * @post Creates instance of GuitarPhoto by ResultSet
+     * @methodtype command
+     * @collaboration Manager
+     */
     @Override
     public void savePhoto(Photo photo) {
         GuitarPhoto guitarPhoto = (GuitarPhoto) photo;
@@ -60,6 +79,12 @@ public class GuitarPhotoManager extends PhotoManager {
     }
 
 
+    /**
+     * @pre
+     * @post Creates instance of GuitarPhoto by ResultSet
+     * @methodtype query
+     * @collaboration Manager
+     */
     @Override
     public GuitarPhoto getPhotoFromId(PhotoId id) {
         GuitarPhoto guitarPhoto = (GuitarPhoto) super.getPhotoFromId(id);

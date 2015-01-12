@@ -5,30 +5,65 @@ import com.mapcode.Point;
 import com.mapcode.UnknownMapcodeException;
 
 /**
- * Created by cdan on 03/11/14.
+ * Created by nuesser on 03/11/14.
  */
 public class MapcodeLocation extends AbstractLocation {
 
     private String mapcode;
 
+    /**
+     * @pre
+     * @post
+     * @methodtype constructor
+     * @collaboration Location
+     */
     public MapcodeLocation() {
         super();
     }
+
+
+    /**
+     * @pre
+     * @post
+     * @methodtype constructor
+     * @collaboration Location
+     */
 
     public MapcodeLocation(String mapcode) {
         this.mapcode = mapcode;
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration Location
+     */
     @Override
     public String getMapcode() {
         return mapcode;
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype set
+     * @collaboration Location
+     */
     @Override
     public void setMapcode(String mapcode) {
         this.mapcode = mapcode;
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype conversion
+     * @collaboration Location
+     */
     @Override
     protected double doGetLatitude() {
         try {
@@ -38,6 +73,13 @@ public class MapcodeLocation extends AbstractLocation {
         }
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype conversion
+     * @collaboration Location
+     */
     @Override
     protected double doGetLongitude() {
         try {
@@ -47,11 +89,25 @@ public class MapcodeLocation extends AbstractLocation {
         }
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype get
+     * @collaboration Location
+     */
     @Override
     protected String doGetMapcode() {
         return getMapcode();
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype set
+     * @collaboration Location
+     */
     @Override
     protected void doSetLatitude(double latitude) {
         if (mapcode != null) {
@@ -68,6 +124,13 @@ public class MapcodeLocation extends AbstractLocation {
             setMapcode(MapcodeCodec.encodeToInternational(latitude, 0.0).toString());
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype set
+     * @collaboration Location
+     */
     @Override
     protected void doSetLongitude(double longitude) {
         if (mapcode != null) {
@@ -84,11 +147,25 @@ public class MapcodeLocation extends AbstractLocation {
             setMapcode(MapcodeCodec.encodeToInternational(0.0, longitude).toString());
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype set
+     * @collaboration Location
+     */
     @Override
     protected void doSetMapcode(String mapcode) {
         setMapcode(mapcode);
     }
 
+
+    /**
+     * @pre
+     * @post
+     * @methodtype conversion
+     * @collaboration Location
+     */
     @Override
     protected String doAsString() {
         return "Mapcode: " + getMapcode();

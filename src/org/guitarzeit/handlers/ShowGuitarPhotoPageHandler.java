@@ -16,6 +16,12 @@ import java.util.Map;
  */
 public class ShowGuitarPhotoPageHandler extends ShowPhotoPageHandler {
 
+    /**
+     * @pre
+     * @post
+     * @methodtype command
+     * @collaboration Client
+     */
     @Override
     protected String doHandleGet(UserSession us, String link, Map args) {
         PhotoManager photoManager = GuitarPhotoManager.getInstance();
@@ -44,6 +50,12 @@ public class ShowGuitarPhotoPageHandler extends ShowPhotoPageHandler {
     }
 
 
+    /**
+     * @pre
+     * @post
+     * @methodtype mutation
+     * @collaboration Client
+     */
     @Override
     protected void makePhotoCaption(UserSession us, WebPart page) {
         GuitarPhoto photo = (GuitarPhoto) us.getPhoto();

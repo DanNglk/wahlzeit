@@ -22,6 +22,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post get singleton instance of GuitarManager
      * @methodtype get
+     * @collaboration Manager
      */
     public static final GuitarManager getInstance() {
         if (instance == null)
@@ -40,6 +41,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post Creates new guitar object
      * @methodtype factory
+     * @collaboration Manager
      */
     public Guitar createGuitar() {
         GuitarId id = GuitarId.getNextId();
@@ -53,6 +55,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post Inserts guitar object into database
      * @methodtype command
+     * @collaboration Manager
      */
     public void addGuitar(Guitar guitar) {
         GuitarId id = guitar.getGuitarId();
@@ -73,6 +76,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post adds guitar to cache
      * @methodtype command
+     * @collaboration Manager
      */
     protected void doAddGuitar(Guitar myGuitar) {
         guitarCache.put(myGuitar.getGuitarId(), myGuitar);
@@ -83,6 +87,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post returns guitar from database by selecting from id
      * @methodtype get
+     * @collaboration Manager
      */
     public Guitar getGuitarFromId(GuitarId id) {
         if (id.isNullId()) {
@@ -111,6 +116,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post get guitar from cache by id
      * @methodtype get
+     * @collaboration Manager
      */
     protected Guitar doGetGuitarFromId(GuitarId id) {
         return guitarCache.get(id);
@@ -121,6 +127,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post saves guitar to database by selecting and updating guitar
      * @methodtype command
+     * @collaboration Manager
      */
     public void saveGuitar(Guitar guitar) {
         try {
@@ -136,6 +143,7 @@ public class GuitarManager extends ObjectManager {
      * @pre
      * @post asserts if guitar exists, if so new IllegalStateException is thrown
      * @methodtype assertion
+     * @collaboration Manager
      */
     protected void assertIsNewGuitar(GuitarId id) {
         if (getGuitarFromId(id) != null)  {

@@ -17,6 +17,7 @@ public class GuitarFactory {
      * @pre
      * @post Return singleton instance of GuitarFactory
      * @methodtype get
+     * @collaboration Manager
      */
     public static synchronized GuitarFactory getInstance() {
         if (guitarFactory == null) {
@@ -30,6 +31,7 @@ public class GuitarFactory {
      * @pre
      * @post Creates guitar by id
      * @methodtype factory
+     * @collaboration Manager
      */
     public Guitar createGuitar(GuitarId guitarId) {
         return new Guitar(guitarId);
@@ -40,6 +42,7 @@ public class GuitarFactory {
      * @pre
      * @post Creates guitar by result set
      * @methodtype factory
+     * @collaboration Manager
      */
     public Guitar createGuitar(ResultSet rs) throws SQLException {
         return new Guitar(rs);

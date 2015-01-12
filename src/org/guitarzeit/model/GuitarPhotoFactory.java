@@ -14,6 +14,12 @@ public class GuitarPhotoFactory extends PhotoFactory {
     public static GuitarPhotoFactory guitarPhotoFactory = null;
 
 
+    /**
+     * @pre
+     * @post Return singleton instance of GuitarPhotoFactory
+     * @methodtype get
+     * @collaboration Manager
+     */
     public static synchronized GuitarPhotoFactory getInstance() {
         if (guitarPhotoFactory == null) {
             guitarPhotoFactory = new GuitarPhotoFactory();
@@ -22,12 +28,24 @@ public class GuitarPhotoFactory extends PhotoFactory {
     }
 
 
+    /**
+     * @pre
+     * @post Creates GuitarPhoto by id
+     * @methodtype factory
+     * @collaboration Manager
+     */
     @Override
     public GuitarPhoto createPhoto(PhotoId id) {
         return new GuitarPhoto(id);
     }
 
 
+    /**
+     * @pre
+     * @post Creates GuitarPhoto by ResultSet
+     * @methodtype factory
+     * @collaboration Manager
+     */
     @Override
     public GuitarPhoto createPhoto(ResultSet rs) throws SQLException {
         return new GuitarPhoto(rs);

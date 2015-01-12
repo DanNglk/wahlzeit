@@ -15,6 +15,7 @@ public class GuitarStringsFactory {
      * @pre
      * @post Creates GuitarStrings object by attributes and pushes object into map for sharing
      * @methodtype factory
+     * @collaboration Value Object
      */
     public static GuitarStrings getInstance(int strings, int size, GuitarStringMaterial material) {
         int hashCode = getGuitarStringsHash(strings, size, material);
@@ -32,6 +33,7 @@ public class GuitarStringsFactory {
      * @pre
      * @post Generates hash code for specific attributes
      * @methodtype utility
+     * @collaboration Value Object
      */
     private static int getGuitarStringsHash(Integer strings, Integer size, GuitarStringMaterial material) {
         return new StringBuilder().append(strings.hashCode())
