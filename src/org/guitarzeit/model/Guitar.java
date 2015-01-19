@@ -88,13 +88,21 @@ public class Guitar extends DataObject {
 
 
     /**
-     * @pre
+     * @pre param not null
      * @post correct value set
      * @methodtype set
      * @collaboration Client, Value Object
      */
     public void setGuitarType(GuitarType guitarType) {
+        try
+        {
+            assert guitarType != null;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("guitarType must not be null");
+        }
         this.guitarType = guitarType;
+        assert this.guitarType == guitarType;
     }
 
 
@@ -110,13 +118,21 @@ public class Guitar extends DataObject {
 
 
     /**
-     * @pre
+     * @pre param not null
      * @post correct value set
      * @methodtype set
      * @collaboration Client, Value Object
      */
     public void setGuitarShape(GuitarShape guitarShape) {
+        try
+        {
+            assert guitarShape != null;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("guitarShape must not be null");
+        }
         this.guitarShape = guitarShape;
+        assert this.guitarShape == guitarShape;
     }
 
 
@@ -132,13 +148,21 @@ public class Guitar extends DataObject {
 
 
     /**
-     * @pre
+     * @pre param not null
      * @post correct value set
      * @methodtype set
      * @collaboration Client, Type Object
      */
     public void setGuitarStrings(GuitarStrings guitarStrings) {
+        try
+        {
+            assert guitarStrings != null;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("guitarStrings must not be null");
+        }
         this.guitarStrings = guitarStrings;
+        assert this.guitarStrings == guitarStrings;
     }
 
 
@@ -154,13 +178,21 @@ public class Guitar extends DataObject {
 
 
     /**
-     * @pre
+     * @pre param not null
      * @post correct value set
      * @methodtype set
      * @collaboration Client, Type Object
      */
     public void setGuitarManufacturer(GuitarManufacturer guitarManufacturer) {
+        try
+        {
+            assert guitarManufacturer != null;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("guitarManufacturer must not be null");
+        }
         this.guitarManufacturer = guitarManufacturer;
+        assert this.guitarManufacturer == guitarManufacturer;
     }
 
 
@@ -176,13 +208,21 @@ public class Guitar extends DataObject {
 
 
     /**
-     * @pre
+     * @pre frets > 10
      * @post correct value set
      * @methodtype set
      * @collaboration Client
      */
     public void setFrets(int frets) {
+        try
+        {
+            assert frets > 10;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("Wrong value. Frets must be greater than 10, yours were " + frets);
+        }
         this.frets = frets;
+        assert this.frets == frets;
     }
 
 
@@ -198,13 +238,21 @@ public class Guitar extends DataObject {
 
 
     /**
-     * @pre
+     * @pre param not null
      * @post correct value set
      * @methodtype set
      * @collaboration Client
      */
     public void setFeatures(String features) {
+        try
+        {
+            assert features != null;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("features must not be null");
+        }
         this.features = features;
+        assert this.features == features;
     }
 
 
@@ -220,13 +268,21 @@ public class Guitar extends DataObject {
 
 
     /**
-     * @pre
+     * @pre pickups > 0
      * @post correct value set
      * @methodtype set
      * @collaboration Client
      */
     public void setPickups(int pickups) {
+        try
+        {
+            assert pickups >= 0;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("Wrong value. Pickups must be 0 or greater than 0, yours were " + pickups);
+        }
         this.pickups = pickups;
+        assert this.pickups == pickups;
     }
 
 

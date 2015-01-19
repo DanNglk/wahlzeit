@@ -141,8 +141,6 @@ public class GuitarId {
      * @collaboration
      */
     public boolean equals(Object o) {
-        // @FIXME
-
         if (!(o instanceof GuitarId)) {
             return false;
         }

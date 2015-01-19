@@ -54,7 +54,12 @@ public class GuitarPhoto extends Photo {
      * @collaboration Client, GuitarPhoto/Guitar
      */
     public void setGuitar(Guitar guitar) {
-        assert guitar != null;
+        try {
+            assert guitar != null;
+        } catch (AssertionError error)
+        {
+            throw new RuntimeException("guitar must not be null");
+        }
         this.guitar = guitar;
         assert this.guitar == guitar;
     }

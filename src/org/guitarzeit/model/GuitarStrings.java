@@ -24,7 +24,12 @@ public class GuitarStrings {
          * @collaboration Type Object
          */
         public Builder setStrings(int strings) {
-            assert strings > 4;
+            try {
+                assert strings > 4;
+            } catch (AssertionError error)
+            {
+                throw new RuntimeException("Wrong amount of strings. Must be more than 4, yours were " + strings);
+            }
             this.strings = strings;
             assert this.strings == strings;
             return this;
@@ -38,7 +43,12 @@ public class GuitarStrings {
          * @collaboration Type Object
          */
         public Builder setSize(int size) {
-            assert size > 0;
+            try {
+                assert size > 0;
+            } catch (AssertionError error)
+            {
+                throw new RuntimeException("Wrong size. Must be more than 0, yours were " + size);
+            }
             this.size = size;
             assert this.size == size;
             return this;
@@ -52,7 +62,12 @@ public class GuitarStrings {
          * @collaboration Type Object
          */
         public Builder setMaterial(GuitarStringMaterial material) {
-            assert material != null;
+            try {
+                assert material != null;
+            } catch (AssertionError error)
+            {
+                throw new RuntimeException("Wrong material, can not be null");
+            }
             this.material = material;
             assert this.material == material;
             return this;
