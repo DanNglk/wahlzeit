@@ -107,6 +107,7 @@ public class MapcodeLocation extends AbstractLocation {
      * @post
      * @methodtype set
      * @collaboration Location
+     * @throws RuntimeException if encoding does not work
      */
     @Override
     protected void doSetLatitude(double latitude) {
@@ -130,6 +131,7 @@ public class MapcodeLocation extends AbstractLocation {
      * @post
      * @methodtype set
      * @collaboration Location
+     * @throws RuntimeException if encoding does not work
      */
     @Override
     protected void doSetLongitude(double longitude) {

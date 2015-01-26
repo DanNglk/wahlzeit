@@ -147,6 +147,7 @@ public class GPSLocation extends AbstractLocation {
      * @post
      * @methodtype set
      * @collaboration Location
+     * @throws RuntimeException if decoding does not work
      */
     @Override
     protected void doSetMapcode(String mapcode) {

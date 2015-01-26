@@ -70,7 +70,7 @@ public class UploadGuitarPhotoFormHandler extends UploadPhotoFormHandler {
             us.setTwoLineMessage(us.cfg().getPhotoUploadSucceeded(), us.cfg().getKeepGoing());
         } catch (Exception ex) {
             SysLog.logThrowable(ex);
-            us.setMessage(us.cfg().getPhotoUploadFailed());
+            us.setMessage(us.cfg().getPhotoUploadFailed() + " " + ex.getMessage());
         }
         return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
     }
